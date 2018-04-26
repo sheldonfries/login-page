@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 
 
-//import AccountsUIWrapper from './AccountsUIWrapper.js';
+import AccountsUIWrapper from './AccountsUIWrapper.js';
  
 // App component - represents the whole app
 export default class App extends Component {
@@ -64,7 +64,7 @@ export default class App extends Component {
       <div className="container">
         <header>
             <h1>Login Form</h1>
-            <!-- <AccountsUIWrapper /> -->
+            <AccountsUIWrapper />
             <form onSubmit={this.handleSubmit}>
             <label>Username:
             <input type="text" value={this.state.user} onChange={this.handleChange} id="user"/>
