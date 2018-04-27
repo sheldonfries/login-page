@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
+
+
+import AccountsUIWrapper from './AccountsUIWrapper.js';
  
 // App component - represents the whole app
 
 export default class App extends Component {
+/*
   constructor(props) {
     super(props);
     this.state = {
       user: '', 
-      pass: '',
-      //confirmpass: ''
+      pass: ''
     };
     
     this.handleChange = this.handleChange.bind(this);
@@ -26,18 +29,13 @@ export default class App extends Component {
   }
   
   handleSubmit(event) {
-    var ulen, user, plen, pass, confirmpass, msgSpan;
+    var ulen, user, plen, pass, msgSpan;
     user = this.state.user;
     pass = this.state.pass;
     ulen = user.length;
     plen = pass.length;
-    //confirmpass = this.state.confirmpass;
     msgSpan = document.getElementById("message");
     msgSpan.textContent = '';
-      
-    /*if(pass != confirmpass) {
-        msgSpan.textContent = msgSpan.textContent + ' Passwords do not match.';
-    }*/
     
     // 2.5.c/f
     if(ulen < 6 || ulen > 8) {
@@ -56,29 +54,24 @@ export default class App extends Component {
     }
     
     // 3
-    
+    if(user != "demo1234" || pass != "demo~!@#$%^1234") {
+      msgSpan.textContent = msgSpan.textContent + ' Invalid username and/or password.';
+    }
     
     event.preventDefault();
   }
-
+*/
  
   render() {
     return (
-      <div>
-      <form onSubmit={this.handleSubmit}>
-        <label>Username:
-        <input type="text" value={this.state.user} onChange={this.handleChange} id="user"/>
-        </label>
-        <br/>
-        <label>Password: 
-        <input type="password" value={this.state.pass} onChange={this.handleChange} id="pass"/>
-        </label>  
-        <br/>
-        <input type="submit" value="Submit"/>
-      </form>
-        <br/>
-      <span id="message"></span>
-    </div>
+      <div className="container">
+        <header>
+            <h1>Login Form</h1>
+            <div className="login">
+                <AccountsUIWrapper />
+            </div>
+        </header>
+      </div>
       );
   }
 }
