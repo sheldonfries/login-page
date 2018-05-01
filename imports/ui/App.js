@@ -26,12 +26,12 @@ export default class App extends Component {
   }
   
   handleSubmit(event) {
-    var ulen, user, plen, pass, confirmpass, msgSpan, success;
+    var ulen, user, plen, pass, confirmpass, msgSpan, error;
     user = this.state.user;
     pass = this.state.pass;
     ulen = user.length;
     plen = pass.length;
-	success = false;
+	error = false;
     //confirmpass = this.state.confirmpass;
     msgSpan = document.getElementById("message");
     msgSpan.textContent = '';
@@ -54,12 +54,12 @@ export default class App extends Component {
     }
     if(!pass.match("^[a-zA-Z0-9~!@#$%^]+$")) {
       msgSpan.textContent = msgSpan.textContent + ' Password should only include alpha numeric values or these special characters: ~, !, @, #, $, %, ^';
+		error = true;
     }
     
     // 3
 	if((user == "demo1234") && (pass == "demo~!@#$%^1234")) {
 		msgSpan.textContent = msgSpan.textContent + ' Login successful.';
-		success = true;
 	}
 	else {
     	msgSpan.textContent = msgSpan.textContent + ' Login unsuccessful.';
@@ -81,7 +81,7 @@ export default class App extends Component {
         <input type="password" value={this.state.pass} onChange={this.handleChange} id="pass"/>
         </label>  
         <br/>
-        <input type="submit" value="Submit"/>
+        <input type="submit" id="submit" value="Submit"/>
       </form>
         <br/>
       <span id="message"></span>
