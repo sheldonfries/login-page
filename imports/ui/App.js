@@ -26,11 +26,12 @@ export default class App extends Component {
   }
   
   handleSubmit(event) {
-    var ulen, user, plen, pass, confirmpass, msgSpan;
+    var ulen, user, plen, pass, confirmpass, msgSpan, success;
     user = this.state.user;
     pass = this.state.pass;
     ulen = user.length;
     plen = pass.length;
+	success = false;
     //confirmpass = this.state.confirmpass;
     msgSpan = document.getElementById("message");
     msgSpan.textContent = '';
@@ -56,8 +57,14 @@ export default class App extends Component {
     }
     
     // 3
-    
-    
+	if((user == "demo1234") && (pass == "demo~!@#$%^1234")) {
+		msgSpan.textContent = msgSpan.textContent + ' Login successful.';
+		success = true;
+	}
+	else {
+    	msgSpan.textContent = msgSpan.textContent + ' Login unsuccessful.';
+    }
+
     event.preventDefault();
   }
 
