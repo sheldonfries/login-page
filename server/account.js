@@ -1,4 +1,5 @@
 import { AccountsServer } from 'meteor/accounts-base';
+import { Accounts } from 'meteor/accounts-base';
 
 Accounts.validateNewUser((user) => { 
     if(user.username) {
@@ -27,4 +28,17 @@ Accounts.validateNewUser((user) => {
 Accounts.onCreateUser(function(options, user) {
     console.log(user);
     return user;
+});
+
+AccountsTemplates.removeField('password');                           
+AccountsTemplates.addField({
+    _id: 'password',
+    type: 'password',
+    placeholder: {
+        signUp: "Minimum 8 characters length."
+    },
+    required: true,
+    minLength: 8,
+    re: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}/,
+    errStr: 'Minimum 1 digit, 1 smallcaps letter en 1 caps letter.',
 });

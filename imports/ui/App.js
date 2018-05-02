@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
+
+//import account from '../../server/account.js';
  
 // App component - represents the whole app
 
@@ -10,6 +12,8 @@ export default class App extends Component {
     this.state = {
       user: '', 
       pass: '',
+      submitted: false,
+      errorMsg: ''
       //confirmpass: ''
     };
     
@@ -26,15 +30,17 @@ export default class App extends Component {
   }
   
   handleSubmit(event) {
-    var ulen, user, plen, pass, confirmpass, msgSpan, error;
+    var ulen, user, plen, pass, confirmpass, msgSpan, errorMsg, submitted;
     user = this.state.user;
     pass = this.state.pass;
     ulen = user.length;
     plen = pass.length;
-	error = false;
+    errorMsg = this.state.errorMsg;
+    errorMsg = '';
+    submitted = this.state.submitted;
     //confirmpass = this.state.confirmpass;
     msgSpan = document.getElementById("message");
-    msgSpan.textContent = '';
+    //msgSpan.textContent = '';
       
     /*if(pass != confirmpass) {
         msgSpan.textContent = msgSpan.textContent + ' Passwords do not match.';
@@ -42,30 +48,43 @@ export default class App extends Component {
     
     // 2.5.c/f
     if(ulen < 6 || ulen > 8) {
-      msgSpan.textContent = msgSpan.textContent + ' Username must be between 6 and 8 characters!';
+      //msgSpan.textContent = msgSpan.textContent + ' Username must be between 6 and 8 characters!';
+      errorMsg = 'Username must be between 6 and 8 characters!';
+      
     }
     if(plen < 8 || plen > 16) {
-      msgSpan.textContent = msgSpan.textContent + ' Password must be between 8 and 16 characters!';
+      //msgSpan.textContent = msgSpan.textContent + ' Password must be between 8 and 16 characters!';
+      errorMsg = 'Password must be between 6 and 8 characters!';
     }
     
     // 2.5.a/b/d/e
     if(!user.match("^[a-zA-Z0-9~!@#$%^]+$")) {
-      msgSpan.textContent = msgSpan.textContent + ' Username should only include alpha numeric values or these special characters: ~, !, @, #, $, %, ^';
+      //msgSpan.textContent = msgSpan.textContent + ' Username should only include alpha numeric values or these special characters: ~, !, @, #, $, %, ^';
+		errorMsg = 'Username should only include alpha numeric values or these special characters: ~, !, @, #, $, %, ^';
+		submitted = false;
+    }
+    else {
+    	submitted = true;
     }
     if(!pass.match("^[a-zA-Z0-9~!@#$%^]+$")) {
-      msgSpan.textContent = msgSpan.textContent + ' Password should only include alpha numeric values or these special characters: ~, !, @, #, $, %, ^';
-		error = true;
+      //msgSpan.textContent = msgSpan.textContent + ' Password should only include alpha numeric values or these special characters: ~, !, @, #, $, %, ^';
+      errorMsg = 'Password should only include alpha numeric values or these special characters: ~, !, @, #, $, %, ^';
+      submitted = false;
+    }
+    else {
+    	submitted = true;
     }
     
     // 3
 	if((user == "demo1234") && (pass == "demo~!@#$%^1234")) {
-		msgSpan.textContent = msgSpan.textContent + ' Login successful.';
+		//msgSpan.textContent = msgSpan.textContent + ' Login successful.';
 	}
 	else {
-    	msgSpan.textContent = msgSpan.textContent + ' Login unsuccessful.';
+    	//msgSpan.textContent = msgSpan.textContent + ' Login unsuccessful.';
     }
 
     event.preventDefault();
+    console.log("Successful submit!");
   }
 
  
