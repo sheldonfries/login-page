@@ -4,7 +4,7 @@ Simple login page with test file to ensure that only appropriate characters may 
 
 Ensure [Meteor](https://www.meteor.com/install) and [Jest](https://facebook.github.io/jest/docs/en/getting-started.html) are installed before running.
 
-##Usage
+## Usage
 
 To run the login page:
 `$ meteor`
