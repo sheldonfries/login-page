@@ -7,8 +7,11 @@ Ensure [Meteor](https://www.meteor.com/install) and [Jest](https://facebook.gith
 ## Usage
 
 To run the login page:
+
 `$ meteor`
+
 **Note:** You may need to remove or rename the .babelrc file in the main directory in order for this to work.
 
 To test:
+
 `$ yarn test`
