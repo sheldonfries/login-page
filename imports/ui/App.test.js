@@ -7,30 +7,26 @@ import Adapter from "enzyme-adapter-react-16";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-test('Character accepted', () => {
-	var c, error, input, result, form, submitted, errorMsg;
-	const wrapper = mount(
-		<App />
-	);
-	// Iterate through potential character codes
-	for(let i = 0; i < 65535; i++) {
-		c = String.fromCharCode(i);
+// Iterate through potential character codes
+for(let i = 0; i < 65535; i++) {
+	const c = String.fromCharCode(i);
+	it(i + ': Character accepted: ' + c, () => {
+		const wrapper = mount(
+			<App />
+		);
 		
 		// Find password text input and send character
-		input = wrapper.find('#pass');
-		input.simulate('change', { target: { value: c } });
-		
-		wrapper.find('form').simulate('submit', { preventDefault () {} });
-		submitted = wrapper.state().submitted;
-		errorMsg = wrapper.state().errorMsg;
-		console.log("i: " + i + " | Value: " + c + " | Submitted: " + submitted + " | Error: " + errorMsg);
-		
+		wrapper.find('#pass').simulate('change', { target: { id: 'pass', value: c } });
+		//wrapper.find('form').props().onSubmit({ preventDefault: () => {} });
+		wrapper.find('form').simulate('submit');
+		//console.log("Letter: " + c);
+			
 		// Check error value and see if it matches expectation
 		if((i > 47 && i < 58) || (i > 64 && i < 91) || (i > 96 && i < 123) || i == 126 || i == 33 || i == 64 || i == 35 || i == 36 || i == 37 || i == 94) {
-			expect(submitted).toEqual(true);
+			expect(wrapper.state().valid).toEqual(true);
 		}
 		else {
-			expect(submitted).toEqual(false);
+			expect(wrapper.state().valid).toEqual(false);
 		}
-	}
-});
+	});
+}

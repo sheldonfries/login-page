@@ -10,10 +10,9 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user: '', 
+      user: 'demo1234', 
       pass: '',
-      submitted: false,
-      errorMsg: ''
+      valid: true
       //confirmpass: ''
     };
     
@@ -29,15 +28,16 @@ export default class App extends Component {
     this.setState({[id]: value});
   }
   
+  changeState(value) {
+	this.setState({ valid: value });
+  }
+  
   handleSubmit(event) {
-    var ulen, user, plen, pass, confirmpass, msgSpan, errorMsg, submitted;
+    var ulen, user, plen, pass, confirmpass, msgSpan, valid;
     user = this.state.user;
     pass = this.state.pass;
     ulen = user.length;
     plen = pass.length;
-    errorMsg = this.state.errorMsg;
-    errorMsg = '';
-    submitted = this.state.submitted;
     //confirmpass = this.state.confirmpass;
     msgSpan = document.getElementById("message");
     //msgSpan.textContent = '';
@@ -49,30 +49,27 @@ export default class App extends Component {
     // 2.5.c/f
     if(ulen < 6 || ulen > 8) {
       //msgSpan.textContent = msgSpan.textContent + ' Username must be between 6 and 8 characters!';
-      errorMsg = 'Username must be between 6 and 8 characters!';
       
     }
     if(plen < 8 || plen > 16) {
       //msgSpan.textContent = msgSpan.textContent + ' Password must be between 8 and 16 characters!';
-      errorMsg = 'Password must be between 6 and 8 characters!';
     }
     
     // 2.5.a/b/d/e
     if(!user.match("^[a-zA-Z0-9~!@#$%^]+$")) {
       //msgSpan.textContent = msgSpan.textContent + ' Username should only include alpha numeric values or these special characters: ~, !, @, #, $, %, ^';
-		errorMsg = 'Username should only include alpha numeric values or these special characters: ~, !, @, #, $, %, ^';
-		submitted = false;
+		this.setState({ valid: false });
     }
     else {
-    	submitted = true;
+    	this.setState({ valid: true });
     }
+    
     if(!pass.match("^[a-zA-Z0-9~!@#$%^]+$")) {
       //msgSpan.textContent = msgSpan.textContent + ' Password should only include alpha numeric values or these special characters: ~, !, @, #, $, %, ^';
-      errorMsg = 'Password should only include alpha numeric values or these special characters: ~, !, @, #, $, %, ^';
-      submitted = false;
+     	this.setState({ valid: false });
     }
     else {
-    	submitted = true;
+    	this.setState({ valid: true });
     }
     
     // 3
@@ -84,7 +81,7 @@ export default class App extends Component {
     }
 
     event.preventDefault();
-    console.log("Successful submit!");
+    //console.log(this.state.valid);
   }
 
  
@@ -93,11 +90,11 @@ export default class App extends Component {
       <div>
       <form onSubmit={this.handleSubmit}>
         <label>Username:
-        <input type="text" value={this.state.user} onChange={this.handleChange} id="user"/>
+        <input type="text" value={this.state.user} onChange={this.handleChange} id="user" />
         </label>
         <br/>
         <label>Password: 
-        <input type="password" value={this.state.pass} onChange={this.handleChange} id="pass"/>
+        <input type="password" value={this.state.pass} onChange={this.handleChange} id="pass" />
         </label>  
         <br/>
         <input type="submit" id="submit" value="Submit"/>
