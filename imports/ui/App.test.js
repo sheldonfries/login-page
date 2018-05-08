@@ -16,17 +16,18 @@ for(let i = 0; i < 65535; i++) {
 		);
 		
 		// Find password text input and send character
-		wrapper.find('#pass').simulate('change', { target: { id: 'pass', value: c } });
-		//wrapper.find('form').props().onSubmit({ preventDefault: () => {} });
+		wrapper.find('#password').simulate('change', { target: { id: 'password', value: c } });
 		wrapper.find('form').simulate('submit');
-		//console.log("Letter: " + c);
+		var error = AccountsTemplates.state.form.get("error");
 			
 		// Check error value and see if it matches expectation
 		if((i > 47 && i < 58) || (i > 64 && i < 91) || (i > 96 && i < 123) || i == 126 || i == 33 || i == 64 || i == 35 || i == 36 || i == 37 || i == 94) {
-			expect(wrapper.state().valid).toEqual(true);
+			//expect(wrapper.state().valid).toEqual(true);
+			expect(error).not.toMatch(/characters/);
 		}
 		else {
-			expect(wrapper.state().valid).toEqual(false);
+			//expect(wrapper.state().valid).toEqual(false);
+			expect(error).toMatch(/characters/);
 		}
 	});
 }

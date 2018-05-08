@@ -1,5 +1,15 @@
 {
   "transform": {
-    "^.+\\.(tsx|ts|js)$": "typescript-babel-jest"
-  }
+    "^.+\\.(tsx|ts|js|jsx)$": "typescript-babel-jest"
+  },
+  "moduleFileExtensions": [
+      "js",
+      "html"
+  ],
+  "moduleDirectories": [
+      "node_modules"
+  ],
+  "transformIgnorePatterns": [
+      "node_modules/(?!iggy-common)"
+  ]
 }
