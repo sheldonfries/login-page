@@ -3,9 +3,23 @@
   "private": true,
   "jest": {
     "verbose": true,
+    "globals": {
+      "NODE_ENV": "test"
+    },
     "moduleNameMapper": {
-      "^meteor/(.*)": "<rootDir>/.meteorMocks/index.js"
-  	}
+      "^meteor/(.*)": "<rootDir>/.meteorMocks/index.js",
+      "\\.(html)$": "<rootDir>/htmlMock.js"
+    },
+    "transform": {
+      "^.+\\.(tsx|ts|js|jsx)$": "babel-jest"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "html"
+    ],
+    "moduleDirectories": [
+      "node_modules"
+    ]
   },
   "scripts": {
     "start": "meteor run",
@@ -25,8 +39,9 @@
     "blaze-renderer": "^0.9.0",
     "meteor-node-stubs": "^0.3.2",
     "react": "^16.3.2",
+    "react-addons-test-utils": "^15.6.2",
     "react-dom": "^16.3.2",
-    "react-templates": "^0.6.3"
+    "react-test-renderer": "^16.3.2"
   },
   "devDependencies": {
     "babel-jest": "^22.4.3",
@@ -35,8 +50,8 @@
     "babel-preset-stage-0": "^6.24.1",
     "enzyme": "^3.3.0",
     "enzyme-adapter-react-16": "^1.1.1",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^22.4.3",
-    "react-addons-test-utils": "^15.6.2",
     "regenerator-runtime": "^0.11.1"
   }
 }

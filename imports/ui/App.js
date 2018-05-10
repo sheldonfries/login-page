@@ -33,7 +33,7 @@ export default class App extends Component {
   }
   
   componentDidMount() {
-    this.view = Blaze.render(Template.LoginTemplate,
+    this.view = ReactDOM.render(Template.LoginTemplate,
       ReactDOM.findDOMNode(this.refs.container));
   }
   componentWillUnmount() {

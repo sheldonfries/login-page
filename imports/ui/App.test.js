@@ -1,14 +1,17 @@
 jest.mock('meteor/meteor');
+//jest.mock('./LoginTemplate.html', () => 'template');
 import React from 'react';
 import App from './App';
 import Enzyme from 'enzyme';
 import { mount } from 'enzyme';
 import Adapter from "enzyme-adapter-react-16";
 
+import './LoginTemplate.html';
+
 Enzyme.configure({ adapter: new Adapter() });
 
 // Iterate through potential character codes
-for(let i = 0; i < 65535; i++) {
+for(let i = 0; i < 2; i++) {
 	const c = String.fromCharCode(i);
 	it(i + ': Character accepted: ' + c, () => {
 		const wrapper = mount(
