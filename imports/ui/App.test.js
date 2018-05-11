@@ -9,15 +9,16 @@ import { Accounts } from 'meteor/accounts-base';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const NUMBER_OF_CHARACTER_CODES = 65535;
+const NUMBER_OF_CHARACTER_CODES = 10;
 const TEST_USER_PASS_LENGTH = 16;
 
+// Generates a random string made up of accepted characters
 function generateString(length) {
 	var string = "";
 	var characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890~!@#$%^";
 	
 	for(let i = 0; i < length; i++)
-		string += characters.charAt(Math.random() % characters.length);
+		string += characters.charAt(Math.floor((Math.random() * 1000)) % characters.length);
 		
 	return string;
 }
