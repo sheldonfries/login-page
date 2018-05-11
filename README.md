@@ -36,7 +36,9 @@ Once the application is up and running, open [http://localhost:3000](http://loca
 #### To test:
 
 `$ npm test`
+
 OR
+
 `$ yarn test`
 
 The default values for the number of loop iterations are *very large*, so running this tester without changing the values of **'NUMBER_OF_CHARACTER_CODES'** and **'TEST_USER_PASS_LENGTH'** may take a very long time. It's probably best to change them to something in the tens or hundreds if just looking to test a few cases or for making sure that the tester is working.

@@ -9,7 +9,7 @@ import { Accounts } from 'meteor/accounts-base';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const NUMBER_OF_CHARACTER_CODES = 40;
+const NUMBER_OF_CHARACTER_CODES = 65535;
 const TEST_USER_PASS_LENGTH = 16;
 
 function generateString(length) {

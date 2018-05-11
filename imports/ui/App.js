@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 
-//import { Account } from '../../server/account.js';
- 
-// App component - represents the whole app
-
 export default class App extends Component {
   constructor(props) {
     super(props);
@@ -19,6 +15,7 @@ export default class App extends Component {
       check4: false
     };
     
+    // Create ref for the message area
     this.spanRef = React.createRef();
     
     this.handleChange = this.handleChange.bind(this);
@@ -47,7 +44,7 @@ export default class App extends Component {
     this.state.check4 = false;
     this.state.valid = false;
     
-    // 2.5.c/f
+    // 2.5.c/f: Check username and password for length requirements
     if(ulen < 6 || ulen > 8)
      	msgSpan.textContent = msgSpan.textContent + ' Username must be between 6 and 8 characters!';
     else
@@ -58,7 +55,7 @@ export default class App extends Component {
     else
     	this.state.check2 = true;
     
-    // 2.5.a/b/d/e
+    // 2.5.a/b/d/e: Check username and password for valid characters
     if(!user.match("^[a-zA-Z0-9~!@#$%^]+$"))
       	msgSpan.textContent = msgSpan.textContent + ' Username should only include alpha numeric values or these special characters: ~, !, @, #, $, %, ^';
     else
@@ -68,11 +65,13 @@ export default class App extends Component {
       	msgSpan.textContent = msgSpan.textContent + ' Password should only include alpha numeric values or these special characters: ~, !, @, #, $, %, ^';
     else
     	this.state.check4 = true;
-    	
+    
+    // If all checks pass, the input is valid
     if(this.state.check1 && this.state.check2 && this.state.check3 && this.state.check4) {
     	this.state.valid = true;
     }
     
+    // If the input is valid, either create an account or log the user in (assuming u/p combo is correct)
     if(this.state.valid == true) {
     	if(Accounts.createUser({
     		username: user,
