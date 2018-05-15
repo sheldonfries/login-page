@@ -7,7 +7,7 @@
       "NODE_ENV": "test"
     },
     "moduleNameMapper": {
-      "^meteor/(.*)": "<rootDir>/.meteorMocks/index.js",
+      "^meteor/(.*)": "<rootDir>/.mocks/index.js",
       "\\.(html)$": "<rootDir>/htmlMock.js"
     },
     "transform": {

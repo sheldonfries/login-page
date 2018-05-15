@@ -8,6 +8,7 @@ import App from '../imports/ui/App.js';
 
 Meteor.startup(() => {
 	var logout = document.getElementById('logout');
-	logout.onclick = Meteor.logout();
+	logout.onClick = Meteor.logout();
+		
 	render(<App />, document.getElementById('root'));
 });

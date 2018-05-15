@@ -10,6 +10,10 @@ body {
   margin-top: 10px;
 }
 
+.logout {
+  margin-top: 10px;
+}
+
 a:link {
   color: white;
   font-weight: bold;

@@ -82,14 +82,13 @@ export default class App extends Component {
     	}
     	else {
     		Meteor.loginWithPassword(user, pass);
-    		console.log(Meteor.userId());
     		msgSpan.textContent = "Logging in...";
     		setTimeout(function() {
 				if(Meteor.userId())
 					msgSpan.textContent = user + ' logged in';
 				else
 					msgSpan.textContent = 'Incorrect password!';
-				}, 1000);
+				}, 500);
     	}
     }
 
