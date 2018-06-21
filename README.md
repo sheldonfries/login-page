@@ -22,6 +22,7 @@ If you're using the login page without the tester, entering a valid username and
 ```
 $ git clone https://github.com/sheldonfries/login-page
 $ cd login-page
+$ npm install
 ```
 
 #### To run the login page:
