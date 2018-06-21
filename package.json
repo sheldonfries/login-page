@@ -3,20 +3,9 @@
   "private": true,
   "jest": {
     "verbose": true,
-    "globals": {
-      "NODE_ENV": "test"
-    },
     "moduleNameMapper": {
-      "^meteor/(.*)": "<rootDir>/.mocks/index.js",
-      "\\.(html)$": "<rootDir>/htmlMock.js"
+      "^meteor/(.*)": "<rootDir>/.mocks/index.js"
     },
-    "transform": {
-      "^.+\\.(tsx|ts|js|jsx)$": "babel-jest"
-    },
-    "moduleFileExtensions": [
-      "js",
-      "html"
-    ],
     "moduleDirectories": [
       "node_modules"
     ]
